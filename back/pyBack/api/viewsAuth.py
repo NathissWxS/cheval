@@ -78,9 +78,10 @@ class RegisterView(TokenObtainPairView):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        username = serializer.validated_data["username"]
         password = serializer.validated_data["password"]
-        nom = serializer.validated_data["nom"]
+        username = serializer.validated_data["username"]
+
+        nom = username
 
         if User.objects.filter(username=username).exists():
             return Response({"error": "username déjà utilisé"}, status=status.HTTP_400_BAD_REQUEST)

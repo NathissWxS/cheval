@@ -39,6 +39,5 @@ class ChevalierEquipementsResponse(serializers.Serializer):
 
 
 class RegisterSerializer(serializers.Serializer):
-    username = serializers.CharField()
     password = serializers.CharField(write_only=True)
-    nom = serializers.CharField()
+    username = serializers.CharField()
