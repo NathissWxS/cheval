@@ -4,6 +4,7 @@ from .views import (
     chevalier_equipements,
     chevalier_equiper,
     chevalier_desequiper,
+    isConnected
 )
 from .viewsAdmin import (
     chevaliers,
@@ -22,4 +23,5 @@ urlpatterns = [
     path('register', RegisterView.as_view(), name='register'),
     path('admin/create/equipements', AdminListeEquipements.as_view(), name='admin_create_equipements'),
     path('admin/delete/equipements/<int:equipement_id>', AdminListeEquipements.as_view(), name='admin_delete_equipements'),
+    path('me', isConnected, name='me'),
 ]

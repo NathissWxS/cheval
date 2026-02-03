@@ -100,5 +100,13 @@ class ChevalierDesequiper(APIView):
             status=status.HTTP_200_OK,
         )
 
+class isConnected(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"message": "utilisateur connecté"}, status=status.HTTP_200_OK)
+
+isConnected = isConnected.as_view()
+
 
 chevalier_desequiper = ChevalierDesequiper.as_view()
