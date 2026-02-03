@@ -12,8 +12,8 @@ from .serializers import (
 )
 
 class ListeEquipements(APIView):
-    # permission_classes = [IsAuthenticated]
-    authentication_classes = [cookiejwtauth]
+    permission_classes = [IsAuthenticated]
+    # authentication_classes = [cookiejwtauth]
 
     def get(self, request):
         equipements = Equipement.objects.all()
@@ -26,8 +26,8 @@ Equipments = ListeEquipements.as_view()
 
 
 class ChevalierEquipements(APIView):
-    # permission_classes = [IsAuthenticated]
-    authentication_classes = [cookiejwtauth]
+    permission_classes = [IsAuthenticated]
+    # authentication_classes = [cookiejwtauth]
 
     def get(self, request):
         if not hasattr(request.user, "chevalier"):
@@ -49,8 +49,8 @@ chevalier_equipements = ChevalierEquipements.as_view()
 
 
 class ChevalierEquiper(APIView):
-    # permission_classes = [IsAuthenticated]
-    authentication_classes = [cookiejwtauth]
+    permission_classes = [IsAuthenticated]
+    # authentication_classes = [cookiejwtauth]
 
     def post(self, request):
         if not hasattr(request.user, "chevalier"):
@@ -78,8 +78,8 @@ chevalier_equiper = ChevalierEquiper.as_view()
 
 
 class ChevalierDesequiper(APIView):
-    # permission_classes = [IsAuthenticated]
-    authentication_classes = [cookiejwtauth]
+    permission_classes = [IsAuthenticated]
+    # authentication_classes = [cookiejwtauth]
 
     def delete(self, request):
         if not hasattr(request.user, "chevalier"):
@@ -106,8 +106,8 @@ class ChevalierDesequiper(APIView):
         )
 
 class isConnected(APIView):
-    # permission_classes = [IsAuthenticated]
-    authentication_classes = [cookiejwtauth]
+    permission_classes = [IsAuthenticated]
+    # authentication_classes = [cookiejwtauth]
 
     def get(self, request):
         return Response({"message": "utilisateur connecté"}, status=status.HTTP_200_OK)
