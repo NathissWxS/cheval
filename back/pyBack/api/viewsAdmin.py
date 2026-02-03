@@ -49,4 +49,23 @@ class ListeChevaliers(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 chevaliers = ListeChevaliers.as_view()
+
+
+class AdminListeEquipements(APIView):
+    permission_classes = [IsAdminUser]
+
+    def post(self, request):
+        serializer = EquipementSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, equipement_id):
+        equipement = get_object_or_404(Equipement, id=equipement_id)
+        equipement.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+admin_equipements = AdminListeEquipements.as_view()
     

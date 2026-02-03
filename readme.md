@@ -10,7 +10,16 @@ python manage.py runserver
 
 routes:
 - GET     /api/equipements/           Liste des équipements (auth requis)
+- GET     /api/chevalier/equipements  Liste des équipements d'un chevalier (auth requis)
 - POST    /api/login                  Authentification (JWT via cookies)
 - POST    /api/login/refresh          Rafraîchissement du token (JWT via cookies)
-- POST    /api/equipements/           Création d'un équipement (auth requis)
+- POST    /api/equipements/           Création d'un équipement (super User requis)
 - POST    /api/register               Enregistrement d'un nouvel utilisateur
+- POST    /api/chevalier/equipements  Ajout d'un équipement à un chevalier (auth requis)
+- DELETE  /api/chevalier/equipements/retirer Retrait d'un équipement d'un chevalier (auth requis)
+
+comment creer un super user:
+python manage.py createsuperuser
+met tes infos gros naze
+/admin sur le navigateur pour acceder a l'admin django
+recupere le token dans les cookies apres login pour tester les routes uniquement en admin sur postman
