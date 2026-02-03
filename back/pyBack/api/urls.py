@@ -5,10 +5,12 @@ from .views import (
 from .viewsAdmin import (
     chevaliers,
 )
+from .viewsAuth import RegisterView
 
 urlpatterns = [
     path('equipements', Equipments, name='liste_equipements'),
     path('equipements/delete/<int:equipement_id>', Equipments, name='supprimer_equipement'),
     path('admin/chevaliers', chevaliers, name='liste_chevaliers'),
     path('admin/chevaliers/delete/<int:chevalier_id>', chevaliers, name='supprimer_chevalier'),
+    path('register', RegisterView.as_view(), name='register'),
 ]
