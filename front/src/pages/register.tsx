@@ -2,7 +2,7 @@ import Header from "../components/Header";
 
 import { useState } from "react";
 
-export default function Login() {
+export default function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState<
@@ -16,7 +16,7 @@ export default function Login() {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:8000/api/login", {
+      const response = await fetch("http://localhost:8000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,25 +27,25 @@ export default function Login() {
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(errorText || "Login failed");
+        throw new Error(errorText || "Register failed");
       }
 
       const data = await response.json().catch(() => ({}));
       setStatus("success");
-      setMessage(data?.message || "Login success");
-      console.log("Login response:", data);
+      setMessage(data?.message || "Register success");
+      console.log("Register response:", data);
     } catch (error) {
       const err = error as Error;
       setStatus("error");
-      setMessage(err.message || "Login failed");
-      console.error("Login error:", err);
+      setMessage(err.message || "Register failed");
+      console.error("Register error:", err);
     }
   };
 
   return (
     <div>
       <Header />
-      <h1>Login</h1>
+      <h1>Register</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
@@ -66,7 +66,7 @@ export default function Login() {
           required
         />
         <button type="submit" disabled={status === "loading"}>
-          {status === "loading" ? "Loading..." : "Login"}
+          {status === "loading" ? "Loading..." : "Register"}
         </button>
       </form>
       {message && <p>{message}</p>}
