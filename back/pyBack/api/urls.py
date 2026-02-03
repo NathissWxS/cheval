@@ -7,6 +7,7 @@ from .views import (
 )
 from .viewsAdmin import (
     chevaliers,
+    AdminListeEquipements,
 )
 from .viewsAuth import RegisterView
 
@@ -19,4 +20,6 @@ urlpatterns = [
     path('admin/chevaliers', chevaliers, name='liste_chevaliers'),
     path('admin/chevaliers/delete/<int:chevalier_id>', chevaliers, name='supprimer_chevalier'),
     path('register', RegisterView.as_view(), name='register'),
+    path('admin/create/equipements', AdminListeEquipements.as_view(), name='admin_create_equipements'),
+    path('admin/delete/equipements/<int:equipement_id>', AdminListeEquipements.as_view(), name='admin_delete_equipements'),
 ]
