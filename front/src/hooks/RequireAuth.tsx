@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { Navigate, Outlet } from "react-router";
 
 export default function RequireAuth() {
-  let isAuthenticated = false;
+  const [isAuthenticated, setisAuthenticated] = useState(false);
+
+  //let isAuthenticated = false;
 
   fetch("http://localhost:8000/api/me", {
     method: "GET",
@@ -12,7 +15,14 @@ export default function RequireAuth() {
   })
     .then((response) => {
       if (response.status === 200) {
-        isAuthenticated = true;
+        setisAuthenticated(true);
+
+        if (!isAuthenticated) {
+          console.log("User has a problem " + isAuthenticated);
+          return <Navigate to="/login" replace />;
+        } else {
+          console.log("User is authenticated");
+        }
       } else {
         throw new Error("Failed to fetch user data");
       }
@@ -20,10 +30,6 @@ export default function RequireAuth() {
     .catch((error) => {
       console.error("Error fetching user data:", error);
     });
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
 
   return <Outlet />;
 }

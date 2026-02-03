@@ -15,6 +15,9 @@ export default function Header() {
         Go to battlefield
       </button>
       <button onClick={() => handleNavigate("taverne")}>Go to tavern</button>
+
+      <button onClick={() => handleNavigate("register")}>Register</button>
+      <button onClick={() => handleNavigate("login")}>Login</button>
     </div>
   );
 }
