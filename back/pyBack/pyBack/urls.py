@@ -22,12 +22,12 @@ urlpatterns = [
     path('api/', include('api.urls')),
 ]
 
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
+from api.viewsAuth import (
+    CookieTokenObtainPairView,
+    CookieTokenRefreshView,
 )
 
 urlpatterns += [
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/login', CookieTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/login/refresh', CookieTokenRefreshView.as_view(), name='token_refresh'),
 ]

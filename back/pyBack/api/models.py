@@ -16,6 +16,13 @@ class Equipement(models.Model):
 class Chevalier(models.Model):
     nom = models.CharField(max_length=100, unique=True)
     equipement = models.ManyToManyField(Equipement, through='ChevalierEquipement')
+    user = models.OneToOneField(
+        'auth.User',
+        on_delete=models.CASCADE,
+        related_name='chevalier',
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
         return self.nom

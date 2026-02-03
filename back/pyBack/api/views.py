@@ -11,7 +11,7 @@ from .serializers import (
 )
 
 class ListeEquipements(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         equipements = Equipement.objects.all()
@@ -29,7 +29,6 @@ class ListeEquipements(APIView):
         equipement = get_object_or_404(Equipement, id=equipement_id)
         equipement.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
 
 
 
